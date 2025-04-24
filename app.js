@@ -36,6 +36,7 @@ async function main() {
     await mongoose.connect(dbUrl);
 }
 
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.engine("ejs", ejsMate);
@@ -76,12 +77,15 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
-    res.locals.currUser = req.user;
+    res.locals.currUser = req.user; // <-- important!
     next();
 });
+
+
 
 app.use("/", userRoutes);
 app.use("/listings/search", searchRoutes); // move this above dynamic route
