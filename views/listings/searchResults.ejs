@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="container mt-4">
+    <h3 class="text-center mb-4">Search Results for "<%= query %>"</h3>
+
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+      <% if (searchResults.length === 0) { %>
+        <div class="alert alert-warning text-center w-100">
+          <h5>No results found for "<%= query %>"</h5>
+        </div>
+      <% } %>
+
+      <% for (let listing of searchResults) { %>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+          <div class="card col listing-card mb-4">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem">
+            <div class="card-body">
+              <p class="card-text">
+                <b><%= listing.title %></b><br>
+                <b><u>&#8377; <%= (listing.price && !isNaN(listing.price)) ? listing.price.toLocaleString("en-IN") : "-" %></u></b> / night
+              </p>
+            </div>
+          </div>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</body>

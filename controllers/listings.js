@@ -4,9 +4,31 @@ const getCoordinates = require('../utils/geocode');
 
 //index route work
 module.exports.index = async (req, res) => {
-    const alllistings = await Listing.find({})
-    res.render("./listings/index.ejs" , {alllistings});
-}
+    const { category } = req.query;
+    let filter = {};
+    let alllistings;
+
+    if (category && category !== "") {
+        if (category === "Trending") {
+            // Show most recent listings for "Trending"
+            alllistings = await Listing.find().sort({ createdAt: -1 });
+        } else {
+            // Filter listings by specific category
+            filter.category = category;
+            alllistings = await Listing.find(filter);
+        }
+    } else {
+        // No filter applied, show all listings
+        alllistings = await Listing.find();
+    }
+
+    if (alllistings.length === 0) {
+        res.render("./listings/index.ejs", { message: `No listings found for "${category || 'All Listings'}".`, alllistings, category });
+    } else {
+        res.render("./listings/index.ejs", { alllistings, category });
+    }
+};
+
 
 //new route work
 module.exports.newListing = (req,res)=>{
@@ -50,6 +72,7 @@ module.exports.createListing = async (req, res) => {
 
     newListing.coordinates = [lat, lng]; // <-- store as array of numbers
 
+    // Save the listing to the database
     await newListing.save();
     req.flash("success", "New Listing Created!!");
     res.redirect(`/listings`);
@@ -107,4 +130,3 @@ module.exports.deleteListing = async (req,res)=>{
     req.flash("success" , "Listing Deleted!!")
     res.redirect("/listings");
 }
-

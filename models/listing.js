@@ -48,8 +48,13 @@ const listingSchema = new Schema({
     coordinates: {
         type: [Number],  // Array of numbers (longitude, latitude)
         required: true,
-    }
-})
+    },
+    category: {
+        type: String,
+        enum: ["Rooms", "Farms", "Beach", "Camping", "Castles", "Trending", "Amazing Views", "Iconic cities" , "Arctic" , "Luxe" , "Beach" , "Mansions"],
+        required: true,
+    }      
+}, { timestamps: true });
 
 listingSchema.post("findOneAndDelete"  , async(listing)=>{
     if(listing){

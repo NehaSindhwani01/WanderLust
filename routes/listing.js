@@ -33,6 +33,8 @@ router.route("/:id")
 .put( isLoggedIn , isOwner  ,upload.single('listing[image]'), validateListing, wrapAsync(listingController.editListing))
 .delete( isOwner , isLoggedIn  , wrapAsync(listingController.deleteListing));
 
+//search route
+
 
 //UPDATE ROUTE
 router.get("/:id/edit" , isOwner ,  isLoggedIn , wrapAsync (listingController.updateListing));

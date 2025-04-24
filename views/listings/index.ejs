@@ -44,51 +44,51 @@
 
 
     <div id="filters" class="d-flex flex-wrap justify-content-start align-items-center">
-      <div class="filter">
+      <div class="filter" data-category="Trending">
         <div><i class="fa-solid fa-fire"></i></div>
         <p>Trending</p>
       </div>
-      <div class="filter"">
+      <div class="filter" data-category="Rooms">
         <div><i class="fa-solid fa-bed"></i></div>
         <p>Rooms</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Iconic cities">
         <div><i class="fa-solid fa-mountain-city"></i></div>
         <p>Iconic cities</p>
       </div>
-      <div class="filter ">
+      <div class="filter" data-category="Castles">
         <div><i class="fa-solid fa-chess-rook"></i></div>
         <p>Castles</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Amazing Pools">
         <div><i class="fa-solid fa-person-swimming"></i></div>
         <p>Amazing Pools</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Camping">
         <div><i class="fa-solid fa-campground"></i></div>
         <p>Camping</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Farms">
         <div><i class="fa-solid fa-tractor"></i></div>
         <p>Farms</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Arctic">
         <div><i class="fa-solid fa-snowflake"></i></div>
         <p>Arctic</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Beachfront">
         <div><i class="fa-solid fa-water"></i></div>
         <p>Beachfront</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Luxe">
         <div><i class="fa-solid fa-crown"></i></div>
         <p>Luxe</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Beach">
         <div><i class="fa-solid fa-sun"></i></div>
         <p>Beach</p>
       </div>
-      <div class="filter">
+      <div class="filter"  data-category="Mansions">
         <div><i class="fa-solid fa-house-laptop"></i></div>
         <p>Mansions</p>
       </div>
@@ -102,6 +102,12 @@
 
     </div>
     <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
+      <% if (alllistings.length === 0) { %>
+        <div class="alert alert-warning text-center w-100">
+          <h5>No listings found for "<%= category %>"</h5>
+        </div>
+      <% } %>
+      
       <% for(let listing of alllistings){ %>
         <a href="/listings/<%= listing._id %>" class="listing-link">
           <div class="card col listing-card">
@@ -135,3 +141,14 @@
     }
   });
 </script>
+
+<script>
+  let filters = document.querySelectorAll(".filter");
+  filters.forEach(filter => {
+    filter.addEventListener("click", () => {
+      let selectedCategory = filter.getAttribute("data-category");
+      window.location.href = `/listings?category=${encodeURIComponent(selectedCategory)}`;
+    });
+  });
+</script>
+
