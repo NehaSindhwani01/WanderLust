@@ -23,6 +23,24 @@
                     </textarea>
                     <div class="invalid-feedback">Write a short description</div>
                 </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="listing[category]" class="form-control" required>
+                        <option value="Trending" <%= listing.category === 'Trending' ? 'selected' : '' %>>Trending</option>
+                        <option value="Rooms" <%= listing.category === 'Rooms' ? 'selected' : '' %>>Rooms</option>
+                        <option value="Iconic cities" <%= listing.category === 'Iconic cities' ? 'selected' : '' %>>Iconic cities</option>
+                        <option value="Castles" <%= listing.category === 'Castles' ? 'selected' : '' %>>Castles</option>
+                        <option value="Amazing Pools" <%= listing.category === 'Amazing Pools' ? 'selected' : '' %>>Amazing Pools</option>
+                        <option value="Camping" <%= listing.category === 'Camping' ? 'selected' : '' %>>Camping</option>
+                        <option value="Farms" <%= listing.category === 'Farms' ? 'selected' : '' %>>Farms</option>
+                        <option value="Arctic" <%= listing.category === 'Arctic' ? 'selected' : '' %>>Arctic</option>
+                        <option value="Beachfront" <%= listing.category === 'Beachfront' ? 'selected' : '' %>>Beachfront</option>
+                        <option value="Luxe" <%= listing.category === 'Luxe' ? 'selected' : '' %>>Luxe</option>
+                        <option value="Beach" <%= listing.category === 'Beach' ? 'selected' : '' %>>Beach</option>
+                        <option value="Mansions" <%= listing.category === 'Mansions' ? 'selected' : '' %>>Mansions</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a category</div>
+                </div>
 
                 <div class="mb-3">
                     Original Listing Image <br>

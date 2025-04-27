@@ -41,6 +41,6 @@ module.exports.loggingOut = (req,res,next)=>{
             next(err);
         }
         req.flash("success","You are logged out!!")
-        res.redirect("/listings");
+        res.redirect("/");
     })
 }
