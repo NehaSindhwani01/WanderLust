@@ -13,7 +13,7 @@ module.exports.searchListings = async (req, res) => {
             $or: [
                 { title: { $regex: query, $options: 'i' } },
                 { description: { $regex: query, $options: 'i' } },
-                { location: { $regex: query, $options: 'i' } }
+                { location: { $regex: query, $options: 'i' } },
             ]
         });
 
