@@ -103,6 +103,12 @@ app.use("/listings/search", searchRoutes); // Ensure this is above dynamic route
 app.use("/listings/:id/reviews", reviews);
 app.use("/listings", listings); // Always keep dynamic routes last
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+    res.json({ status: "ok" });
+});
+
+
 // 404 Error Handling
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));

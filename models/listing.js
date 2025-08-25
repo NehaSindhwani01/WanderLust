@@ -12,19 +12,6 @@ const listingSchema = new Schema({
     image: {
         url : String,
         filename : String,
-        /*filename: {
-          type: String,
-          default: "default_image"
-        },
-        url: {
-          type: String,
-          default: "https://media.istockphoto.com/id/1227329047/photo/two-ampty-chairs-facing-magnificent-sunset-view-at-beach.jpg?s=612x612&w=0&k=20&c=z7HngBDSmIyrvduaiz5F9bVd9fblyRWb8AKe3pf09fY=",
-          set: function(v) {
-            return (!v || v.trim() === "") 
-              ? "https://media.istockphoto.com/id/1227329047/photo/two-ampty-chairs-facing-magnificent-sunset-view-at-beach.jpg?s=612x612&w=0&k=20&c=z7HngBDSmIyrvduaiz5F9bVd9fblyRWb8AKe3pf09fY=" 
-              : v;
-          }
-        }*/
     },         
     price:{
         type : Number,
